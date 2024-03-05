@@ -16,7 +16,7 @@ public class Trie {
         }
     }
 
-    static TrieNode root = new TrieNode();;
+    static TrieNode root = new TrieNode();
 
     // Inserts a key into the trie
     static void insert(String key) {
@@ -92,22 +92,42 @@ public class Trie {
         }
     }
 
+    // Checks if a string is in the trie tree
+    static boolean contains(String str) {
+        TrieNode currentNode = root;
+
+        // Traverse through each character of the input string
+        for (int level = 0; level < str.length(); level++) {
+            int charIndex = str.charAt(level) - 'a'; // Convert the current character to an index
+
+            // If the node for the current character doesn't exist, the string is not in the trie
+            if (currentNode.children[charIndex] == null)
+                return false;
+
+            currentNode = currentNode.children[charIndex]; // Move to the next node
+        }
+
+        // If the traversal completes successfully, return true
+        return true;
+    }
+
+
 
 
     // Driver
     public static void main(String args[]) {
         // Input keys (use only 'a' through 'z' and lower case)
-        String keys[] = {"the", "a", "there", "answer", "any",
-                "by", "bye", "their"};
-
-        String output[] = {"Not present in trie", "Present in trie"};
-
-        //root = new TrieNode(); // Create root node
-
-        // Construct trie by inserting keys
-        for (String key : keys) {
-            insert(key);
-        }
+//        String keys[] = {"the", "a", "there", "answer", "any",
+//                "by", "bye", "their"};
+//
+//        String output[] = {"Not present in trie", "Present in trie"};
+//
+//        //root = new TrieNode(); // Create root node
+//
+//        // Construct trie by inserting keys
+//        for (String key : keys) {
+//            insert(key);
+//        }
 
         //printAllWords();
     }
